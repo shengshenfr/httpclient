@@ -21,6 +21,8 @@ import java.util.concurrent.Executors;
 public class HttpURLConnectionExample {
 
     private final String USER_AGENT = "Mozilla/5.0";
+    private final String inputFilePath = "d:/IntelliJ IDEA/httpClient/inputfile_example.txt";
+    private final String resultPath = "d:/IntelliJ IDEA/httpClient/result.json";
     private URL urlDb; //search url of database
     private String param, key; //user defined search parameters and key represents product name (in our case "search_terms")
     private String charset; //ofen UTF-8
@@ -50,7 +52,7 @@ public class HttpURLConnectionExample {
     //write the data Json in the file result.json
     private void fileWrite(JSONObject jsonObject) throws Exception {
         BufferedWriter bw = new BufferedWriter(new FileWriter(
-                new File("d:/IntelliJ IDEA/httpClient/result.json"), true));
+                new File(resultPath), true));
         bw.write(jsonObject.toString() + "\t" + "\n");
 
         bw.flush();
@@ -60,7 +62,7 @@ public class HttpURLConnectionExample {
     //check if the name of one product exists in the file result.json
     public String search(String name) throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(
-                "d:/IntelliJ IDEA/httpClient/result.json"));// read the file JSON
+                resultPath));// read the file JSON
 
         String product_name = null;//define the product_name is null
         String s = null;
@@ -84,8 +86,8 @@ public class HttpURLConnectionExample {
 
         final String product_name = null;
         final BufferedReader br = new BufferedReader(new FileReader(
-                "d:/IntelliJ IDEA/httpClient/inputfile_example.txt"));// read the file txt
-        //use the threadpool to search the product
+                inputFilePath));// read the file txt
+        //use the threadpool to read the product
         ExecutorService executor = Executors.newFixedThreadPool(5);
         executor.execute(new Runnable() {
             public void run() {
