@@ -17,6 +17,7 @@ public class test {
         URL urlDb = new URL("https://world.openfoodfacts.org/cgi/search.pl");
         String param = "&search_simple=1&action=process&json=1&page=1&page_size=100";
 
+
         System.out.println("Testing 1 - Send Http GET request");
         HttpURLConnectionExample http = new HttpURLConnectionExample(urlDb, "UTF-8", param, "search_terms");
         //choose one product name from site
