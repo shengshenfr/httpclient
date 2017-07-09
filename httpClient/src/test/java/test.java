@@ -17,9 +17,10 @@ public class test {
         URL urlDb = new URL("https://world.openfoodfacts.org/cgi/search.pl");
         String param = "&search_simple=1&action=process&json=1&page=1&page_size=100";
 
-
+        String inputFilePath = "d:/IntelliJ IDEA/httpClient/inputfile_example.txt";
+        String resultPath = "d:/IntelliJ IDEA/httpClient/result.json";
         System.out.println("Testing 1 - Send Http GET request");
-        HttpURLConnectionExample http = new HttpURLConnectionExample(urlDb, "UTF-8", param, "search_terms");
+        HttpURLConnectionExample http = new HttpURLConnectionExample(inputFilePath,resultPath,urlDb, "UTF-8", param, "search_terms");
         //choose one product name from site
         JSONObject example1 = new JSONObject("{\"product_name\":\"Ail & Fines Herbes (40 % MG)\"}");
         //check if it exists in the file result
