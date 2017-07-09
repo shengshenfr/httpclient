@@ -21,14 +21,16 @@ import java.util.concurrent.Executors;
 public class HttpURLConnectionExample {
 
     private final String USER_AGENT = "Mozilla/5.0";
-    private final String inputFilePath = "d:/IntelliJ IDEA/httpClient/inputfile_example.txt";
-    private final String resultPath = "d:/IntelliJ IDEA/httpClient/result.json";
+    private String inputFilePath ;
+    private String resultPath ;
     private URL urlDb; //search url of database
     private String param, key; //user defined search parameters and key represents product name (in our case "search_terms")
     private String charset; //ofen UTF-8
 
     //construct
-    public HttpURLConnectionExample (URL urlDb, String charset, String param, String key) {
+    public HttpURLConnectionExample (String inputFilePath,String resultPath, URL urlDb, String charset, String param, String key) {
+        this.inputFilePath = inputFilePath;
+        this.resultPath = resultPath;
         this.urlDb = urlDb;
         this.charset = charset;
         this.param = param;
@@ -38,12 +40,17 @@ public class HttpURLConnectionExample {
 
     public static void main(String[] args) throws Exception {
 
+        //String inputFilePath = "d:/IntelliJ IDEA/httpClient/inputfile_example.txt";
+        //String resultPath = "d:/IntelliJ IDEA/httpClient/result.json";
         //create the URL
+        System.out.println(args[0]);
+        System.out.println(args[1]);
+
         URL urlDb = new URL("https://world.openfoodfacts.org/cgi/search.pl");
         String param = "&search_simple=1&action=process&json=1&page=1&page_size=100";
 
         System.out.println("Testing 1 - Send Http GET request");
-        HttpURLConnectionExample http = new HttpURLConnectionExample(urlDb, "UTF-8", param, "search_terms");
+        HttpURLConnectionExample http = new HttpURLConnectionExample(args[0],args[1],urlDb, "UTF-8", param, "search_terms");
         //http.sendGet();
         http.read();
        // new ThreadTest().test();
